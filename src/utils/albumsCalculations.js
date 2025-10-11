@@ -18,7 +18,7 @@ export function albums(albumsObject) {
         name: item.name,
         year: item.release_date,
         image:
-          item.image && item.images[1] ? item.images[1].url : "default-URL",
+          item.images && item.images[1] ? item.images[1].url : "default-URL",
       };
     });
   }
