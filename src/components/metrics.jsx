@@ -1,12 +1,19 @@
 import { useSpotifyContext } from "../hooks/useSpotifyContext";
 
-const Metrics = () => {
+export const TotalTracks = () => {
   const { trackCount } = useSpotifyContext();
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">{trackCount}</h1>
+      <h1 className="text-8xl">Total Tracks: {trackCount}</h1>
     </div>
   );
 };
 
-export default Metrics;
+export const TotalAlbums = () => {
+  const { albumCnt } = useSpotifyContext();
+  return (
+    <div>
+      <h1>Total Albums {albumCnt}</h1>
+    </div>
+  );
+};
