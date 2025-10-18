@@ -1,4 +1,3 @@
-import "./index.css";
 import { TotalTracks, TotalAlbums } from "./components/metrics";
 
 function App() {

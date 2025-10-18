@@ -4,7 +4,7 @@ export const TotalTracks = () => {
   const { trackCount } = useSpotifyContext();
   return (
     <div>
-      <h1 className="text-8xl">Total Tracks: {trackCount}</h1>
+      <h1>Total Tracks: {trackCount}</h1>
     </div>
   );
 };
