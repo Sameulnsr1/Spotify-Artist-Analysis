@@ -46,6 +46,7 @@ export function tracksPerAlb(albumsObject) {
         id: index,
         name: item.name,
         total_tracks: item.total_tracks,
+        release_date: item.release_date,
       };
     });
   }
