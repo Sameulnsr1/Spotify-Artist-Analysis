@@ -1,10 +1,8 @@
 import { TotalTracks, TotalAlbums } from "./components/metrics";
-import { useSpotifyContext } from "./hooks/useSpotifyContext";
 import { ResponsiveBar } from "@nivo/bar";
 import { TrackGraph } from "./components/charts";
 
 function App() {
-  const { tracksPerAlbum } = useSpotifyContext();
   return (
     <>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-8">
