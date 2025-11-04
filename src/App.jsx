@@ -1,6 +1,7 @@
 import { TotalTracks, TotalAlbums } from "./components/metrics";
 import { ResponsiveBar } from "@nivo/bar";
 import { TrackGraph } from "./components/charts";
+import { AlbumGraph } from "./components/charts";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
                 <TotalAlbums />
                 <article className="h-[700px]">
                   <TrackGraph />
+                </article>
+                <article className="h-[700px]">
+                  <AlbumGraph />
                 </article>
               </div>
             </section>
