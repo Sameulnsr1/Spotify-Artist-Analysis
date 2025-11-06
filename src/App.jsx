@@ -19,8 +19,10 @@ function App() {
           <main>
             <section>
               <div>
-                <TotalTracks />
-                <TotalAlbums />
+                <div>
+                  <TotalTracks />
+                  <TotalAlbums />
+                </div>
                 <article className="h-[700px]">
                   <TrackGraph />
                 </article>

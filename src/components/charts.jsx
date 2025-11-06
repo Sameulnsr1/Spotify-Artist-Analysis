@@ -101,8 +101,8 @@ export function AlbumGraph() {
       data: albumRelease.map((item) => {
         const date = new Date(item.year);
         return {
-          x: date.getFullYear(),
-          y: date.getMonth() + 1, // Returns 1-12
+          x: date.getMonth() + 1, // Returns 1-12
+          y: date.getFullYear(),
           name: item.name, // Add album name for tooltip
         };
       }),
@@ -128,12 +128,12 @@ export function AlbumGraph() {
     <ResponsiveScatterPlot
       data={chartData}
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
-      xScale={{ type: "linear", min: 2000, max: 2025 }}
-      yScale={{
+      xScale={{
         type: "linear",
         min: 1,
         max: 12,
       }}
+      yScale={{ type: "linear", min: 2000, max: 2025 }}
       layers={[
         "grid",
         "axes",
@@ -161,19 +161,19 @@ export function AlbumGraph() {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "Year",
+        legend: "Month",
         legendPosition: "middle",
         legendOffset: 40,
-        format: (value) => Math.round(value),
+        format: (value) => monthNames[value - 1] || value,
       }}
       axisLeft={{
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "Month",
+        legend: "Year",
         legendPosition: "middle",
         legendOffset: -40,
-        format: (value) => monthNames[value - 1] || value,
+        format: (value) => Math.round(value),
       }}
       colors="#9ca3af"
       nodeSize={10}
@@ -191,9 +191,9 @@ export function AlbumGraph() {
         >
           <strong>{node.data.name}</strong>
           <br />
-          Month: {monthNames[node.data.y - 1]}
+          Month: {monthNames[node.data.x - 1]}
           <br />
-          Year: {node.data.x}
+          Year: {node.data.y}
         </div>
       )}
       theme={{
