@@ -1,6 +1,4 @@
 import { ResponsiveBar } from "@nivo/bar";
-import { ResponsiveLine } from "@nivo/line";
-import { ResponsiveScatterPlot } from "@nivo/scatterplot";
 import { useSpotifyContext } from "../hooks/useSpotifyContext";
 
 export function TrackGraph() {
@@ -94,52 +92,38 @@ export function TrackGraph() {
 }
 
 export function AlbumGraph() {
-  const { albumRelease } = useSpotifyContext();
-  const chartData = [
-    {
-      id: "Albums",
-      data: albumRelease.map((item) => {
-        const date = new Date(item.year);
-        return {
-          x: date.getMonth() + 1, // Returns 1-12
-          y: date.getFullYear(),
-          name: item.name, // Add album name for tooltip
-        };
-      }),
-    },
-  ];
-
-  const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
+  const { yearlyAlbums } = useSpotifyContext();
 
   return (
-    <ResponsiveScatterPlot
-      data={chartData}
+    <ResponsiveBar
+      data={yearlyAlbums}
+      keys={["albumCount"]}
+      indexBy="year"
+      layout="horizontal"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
-      xScale={{
-        type: "linear",
-        min: 1,
-        max: 12,
+      padding={0.3}
+      valueScale={{ type: "linear", min: 0 }}
+      indexScale={{ type: "band", round: true }}
+      colors="#9ca3af"
+      borderColor={{
+        from: "color",
+        modifiers: [["darker", 1.6]],
       }}
-      yScale={{ type: "linear", min: 2000, max: 2025 }}
+      theme={{
+        axis: {
+          legend: {
+            text: {
+              fontSize: 14,
+              fill: "#9ca3af",
+            },
+          },
+        },
+      }}
       layers={[
         "grid",
         "axes",
-        "nodes",
+        "bars",
         "markers",
-        "mesh",
         "legends",
         "annotations",
         ({ innerWidth }) => (
@@ -153,18 +137,20 @@ export function AlbumGraph() {
               fill: "#333333",
             }}
           >
-            Album Releases
+            Albums Released Per Year
           </text>
         ),
       ]}
+      axisTop={null}
+      axisRight={null}
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "Month",
+        legend: "Number of Albums",
         legendPosition: "middle",
         legendOffset: 40,
-        format: (value) => monthNames[value - 1] || value,
+        format: (value) => (Number.isInteger(value) ? value : ""),
       }}
       axisLeft={{
         tickSize: 5,
@@ -172,40 +158,18 @@ export function AlbumGraph() {
         tickRotation: 0,
         legend: "Year",
         legendPosition: "middle",
-        legendOffset: -40,
-        format: (value) => Math.round(value),
+        legendOffset: -50,
       }}
-      colors="#9ca3af"
-      nodeSize={10}
-      useMesh={true}
-      tooltip={({ node }) => (
-        <div
-          style={{
-            background: "white",
-            padding: "12px 16px",
-            border: "1px solid #ccc",
-            borderRadius: "4px",
-            minWidth: "200px",
-            maxWidth: "300px",
-          }}
-        >
-          <strong>{node.data.name}</strong>
-          <br />
-          Month: {monthNames[node.data.x - 1]}
-          <br />
-          Year: {node.data.y}
-        </div>
-      )}
-      theme={{
-        axis: {
-          legend: {
-            text: {
-              fontSize: 14,
-              fill: "#9ca3af",
-            },
-          },
-        },
-      }}
+      labelSkipWidth={12}
+      labelSkipHeight={12}
+      labelTextColor="#333333"
+      enableLabel={true}
+      label={(d) => d.value}
+      labelPosition="end"
+      labelOffset={10}
+      legends={[]}
+      animate={true}
+      motionConfig="gentle"
     />
   );
 }

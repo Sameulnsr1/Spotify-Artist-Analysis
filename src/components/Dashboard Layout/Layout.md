@@ -38,13 +38,13 @@ This document outlines the complete structure for a professional artist analytic
 
 ## 🛠️ Project Stack
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| React | 19.1.1 | UI Framework |
-| Vite | 7.1.2 | Build Tool |
-| Tailwind CSS | 4.1.14 | Styling |
-| @nivo/bar | 0.99.0 | Bar Charts |
-| @nivo/scatterplot | 0.99.0 | Scatter Plots |
+| Technology        | Version | Purpose       |
+| ----------------- | ------- | ------------- |
+| React             | 19.1.1  | UI Framework  |
+| Vite              | 7.1.2   | Build Tool    |
+| Tailwind CSS      | 4.1.14  | Styling       |
+| @nivo/bar         | 0.99.0  | Bar Charts    |
+| @nivo/scatterplot | 0.99.0  | Scatter Plots |
 
 **No TypeScript** - JavaScript only
 
@@ -135,6 +135,7 @@ This document outlines the complete structure for a professional artist analytic
 ### Layout Structure
 
 **Split Design with Flexbox:**
+
 - Layout: Flexbox with `space-between` (pushes left and right content apart)
 - Vertical Alignment: Both sections centered relative to each other
 - Background: White or `bg-slate-50`
@@ -168,22 +169,26 @@ This document outlines the complete structure for a professional artist analytic
 ### Left Section (Title Area)
 
 **Main Title:** "Artist Performance Analytics"
+
 - Font size: `text-4xl` (2.25rem / 36px)
 - Font weight: `font-bold`
 - Color: `text-slate-900`
 
 **Subtitle:** "Comprehensive overview of catalog performance"
+
 - Font size: `text-lg` (1.125rem / 18px)
 - Color: `text-slate-600`
 
 ### Right Section (Form Controls - Option C)
 
 **Combined Form Unit:**
+
 - Total width: 400-500px
 - Height: 2.5-3rem (40-48px)
 - Gap between input and button: `0.75rem` (12px)
 
 **Input Field:**
+
 - Placeholder: "Enter Spotify Artist ID"
 - Width: Flexible (grows to fill available space)
 - Border: `border border-gray-300`
@@ -193,6 +198,7 @@ This document outlines the complete structure for a professional artist analytic
 - Placeholder color: `placeholder:text-gray-400`
 
 **Submit Button:**
+
 - Text: "Submit"
 - Width: Fixed (80-120px)
 - Background: `bg-blue-600 hover:bg-blue-700`
@@ -216,10 +222,12 @@ This document outlines the complete structure for a professional artist analytic
 ### Individual Card Specifications
 
 **Dimensions:**
+
 - Width: Exactly 50% of container (minus half the gap)
 - Minimum height: 120-150px (for consistency)
 
 **Styling:**
+
 - Background: `bg-white`
 - Shadow: `shadow-sm` (subtle depth)
 - Border radius: `rounded-lg` (0.5rem)
@@ -230,6 +238,7 @@ This document outlines the complete structure for a professional artist analytic
 Each card contains two text elements stacked vertically:
 
 **Label (Top):**
+
 - Text: "Total Tracks" or "Total Albums"
 - Font size: `text-sm` (0.875rem / 14px)
 - Font weight: `font-medium`
@@ -237,6 +246,7 @@ Each card contains two text elements stacked vertically:
 - Margin bottom: `mb-2` (0.5rem / 8px)
 
 **Number (Bottom):**
+
 - Font size: `text-4xl` (2.25rem / 36px)
 - Font weight: `font-bold`
 - Color: `text-gray-900`
@@ -279,6 +289,7 @@ Both **TrackGraph** and **AlbumGraph** follow the same card container pattern.
 **Component:** `ResponsiveBar` from @nivo/bar
 
 **Properties:**
+
 - Title: "Tracks Per Album"
 - Height: `700px` (fixed)
 - Width: 100% of card interior
@@ -290,6 +301,7 @@ Both **TrackGraph** and **AlbumGraph** follow the same card container pattern.
 **Component:** `ResponsiveScatterPlot` from @nivo/scatterplot
 
 **Properties:**
+
 - Title: "Album Release Timeline"
 - Height: `700px` (fixed)
 - Width: 100% of card interior
@@ -363,15 +375,18 @@ The dashboard adapts to three primary breakpoints for optimal viewing across dev
 ### Mobile (< 768px)
 
 **Header:** Stacked layout
+
 - Title and subtitle on top (full width)
 - Input field below title (full width or nearly full)
 - Submit button below input or side-by-side
 
 **Metrics:** Single column (`grid-cols-1`)
+
 - Each card takes 100% width
 - Stacked vertically
 
 **Charts:** Full width
+
 - Nivo charts are responsive by default
 
 **Spacing:** Reduced padding throughout for screen space optimization
@@ -438,27 +453,27 @@ max-w-7xl mx-auto
 
 ### Spacing Scale
 
-| Spacing Value | Tailwind Class | Usage |
-|---------------|----------------|-------|
-| 3rem (48px) | `mt-12` / `mb-12` | Large section breaks |
-| 2rem (32px) | `mt-8` / `mb-8` | Between major sections |
-| 1.5rem (24px) | `p-6` / `gap-6` | Card padding, grid gaps |
-| 1rem (16px) | `mt-4` / `mb-4` | Between related items |
-| 0.75rem (12px) | `gap-3` | Input/button spacing |
-| 0.5rem (8px) | `mb-2` | Label to number spacing |
+| Spacing Value  | Tailwind Class    | Usage                   |
+| -------------- | ----------------- | ----------------------- |
+| 3rem (48px)    | `mt-12` / `mb-12` | Large section breaks    |
+| 2rem (32px)    | `mt-8` / `mb-8`   | Between major sections  |
+| 1.5rem (24px)  | `p-6` / `gap-6`   | Card padding, grid gaps |
+| 1rem (16px)    | `mt-4` / `mb-4`   | Between related items   |
+| 0.75rem (12px) | `gap-3`           | Input/button spacing    |
+| 0.5rem (8px)   | `mb-2`            | Label to number spacing |
 
 ### Color Palette
 
-| Element | Color | Tailwind Class |
-|---------|-------|----------------|
-| Page Background | Gradient slate-50 to slate-100 | `bg-gradient-to-br from-slate-50 to-slate-100` |
-| Card Backgrounds | White | `bg-white` |
-| Primary Text | Dark gray | `text-gray-900` / `text-slate-900` |
-| Secondary Text | Medium gray | `text-gray-600` / `text-slate-600` |
-| Tertiary Text | Light gray | `text-gray-500` |
-| Primary Button | Blue | `bg-blue-600 hover:bg-blue-700` |
-| Chart Elements | Gray | `#9ca3af` (currently used) |
-| Borders | Light gray | `border-gray-300` / `border-slate-200` |
+| Element          | Color                          | Tailwind Class                                 |
+| ---------------- | ------------------------------ | ---------------------------------------------- |
+| Page Background  | Gradient slate-50 to slate-100 | `bg-gradient-to-br from-slate-50 to-slate-100` |
+| Card Backgrounds | White                          | `bg-white`                                     |
+| Primary Text     | Dark gray                      | `text-gray-900` / `text-slate-900`             |
+| Secondary Text   | Medium gray                    | `text-gray-600` / `text-slate-600`             |
+| Tertiary Text    | Light gray                     | `text-gray-500`                                |
+| Primary Button   | Blue                           | `bg-blue-600 hover:bg-blue-700`                |
+| Chart Elements   | Gray                           | `#9ca3af` (currently used)                     |
+| Borders          | Light gray                     | `border-gray-300` / `border-slate-200`         |
 
 ---
 
@@ -517,14 +532,14 @@ max-w-7xl mx-auto
 
 ### Current Components Status
 
-| Component | Status | Notes |
-|-----------|--------|-------|
-| `TotalTracks` | ✓ Built | Needs card wrapper styling |
-| `TotalAlbums` | ✓ Built | Needs card wrapper styling |
-| `TrackGraph` | ✓ Built | Bar chart with Nivo, needs card wrapper |
-| `AlbumGraph` | ✓ Built | Scatter plot with Nivo, needs card wrapper |
-| `useSpotifyContext` | ✓ Built | Provides all necessary data |
-| Header Form | ✗ Not built | Needs implementation |
+| Component           | Status      | Notes                                      |
+| ------------------- | ----------- | ------------------------------------------ |
+| `TotalTracks`       | ✓ Built     | Needs card wrapper styling                 |
+| `TotalAlbums`       | ✓ Built     | Needs card wrapper styling                 |
+| `TrackGraph`        | ✓ Built     | Bar chart with Nivo, needs card wrapper    |
+| `AlbumGraph`        | ✓ Built     | Scatter plot with Nivo, needs card wrapper |
+| `useSpotifyContext` | ✓ Built     | Provides all necessary data                |
+| Header Form         | ✗ Not built | Needs implementation                       |
 
 ### State Management Considerations
 

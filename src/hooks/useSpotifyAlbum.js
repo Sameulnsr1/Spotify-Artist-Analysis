@@ -6,6 +6,7 @@ import {
   albums,
   trackCnt,
   tracksPerAlb,
+  albumsPerYear,
 } from "../utils/albumsCalculations";
 
 const useSpotifyAlbum = () => {
@@ -35,6 +36,10 @@ const useSpotifyAlbum = () => {
   const albumRelease = useMemo(() => albums(albumsObject), [albumsObject]);
   const albumCnt = useMemo(() => albumCount(albumsObject), [albumsObject]);
   const trackCount = useMemo(() => trackCnt(albumsObject), [albumsObject]);
+  const yearlyAlbums = useMemo(
+    () => albumsPerYear(albumsObject),
+    [albumsObject]
+  );
 
   return {
     tracksPerAlbum,
@@ -42,6 +47,7 @@ const useSpotifyAlbum = () => {
     albumCnt,
     trackCount,
     trackData,
+    yearlyAlbums,
   };
 };
 
