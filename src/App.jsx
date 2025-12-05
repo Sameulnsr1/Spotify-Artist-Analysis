@@ -36,11 +36,13 @@ function App() {
                   <article className="h-[500px] w-full lg:max-w-5xl lg:m-auto">
                     <AlbumGraph />
                   </article>
-                  <article className="h-[500px] w-full lg:max-w-5xl lg:m-auto">
-                    <TrackGraph />
-                  </article>
                   <LongAlbum />
                   <ShortAlbum />
+                </div>
+                <div>
+                  <article className="h-[500px] w-full lg:max-w-7xl lg:m-auto">
+                    <TrackGraph />
+                  </article>
                 </div>
               </div>
             </section>
