@@ -11,6 +11,7 @@ import {
 
 const useSpotifyAlbum = () => {
   const [trackData, setTrackData] = useState(null);
+  const [artistID, setArtistID] = useState("3TVXtAsR1Inumwj472S9r4");
   const albumsObject = useMemo(
     () => (trackData ? trackData.items : []),
     [trackData]
@@ -20,14 +21,14 @@ const useSpotifyAlbum = () => {
     const fetchData = async () => {
       try {
         const tokenData = await getToken();
-        const trackInfo = await getTrackInfo(tokenData.access_token);
+        const trackInfo = await getTrackInfo(tokenData.access_token, artistID);
         setTrackData(trackInfo);
       } catch (error) {
         console.error(error.message);
       }
     };
     fetchData();
-  }, []);
+  }, [artistID]);
 
   const tracksPerAlbum = useMemo(
     () => tracksPerAlb(albumsObject),
@@ -48,6 +49,8 @@ const useSpotifyAlbum = () => {
     trackCount,
     trackData,
     yearlyAlbums,
+    artistID,
+    setArtistID,
   };
 };
 

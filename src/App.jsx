@@ -8,18 +8,33 @@ import {
 import { ResponsiveBar } from "@nivo/bar";
 import { TrackGraph } from "./components/charts";
 import { AlbumGraph } from "./components/charts";
+import { useSpotifyContext } from "./hooks/useSpotifyContext";
+import { UpdateArtist } from "./components/artist";
 
 function App() {
+  const { setArtistID } = useSpotifyContext();
+
+  const handleClick = (event) => {
+    setArtistID(event.target.value);
+  };
+
   return (
     <>
       <div>
         <header>
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">
-            Artist Performance Analytics
-          </h1>
-          <p className="text-slate-600 text-lg">
-            Comprehensive overview of catalog performance
-          </p>
+          <div>
+            <div>
+              <h1 className="text-4xl font-bold text-slate-900 mb-2">
+                Artist Performance Analytics
+              </h1>
+              <p className="text-slate-600 text-lg">
+                Comprehensive overview of catalog performance
+              </p>
+            </div>
+            <div>
+              <UpdateArtist onSubmit={handleClick} />
+            </div>
+          </div>
         </header>
       </div>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-8">

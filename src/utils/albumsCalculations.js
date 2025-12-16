@@ -59,9 +59,11 @@ export function albumsPerYear(albumsObject) {
   } else {
     const groupByYear = albumsObject.reduce((accumulator, album) => {
       const year = album.release_date.slice(0, 4);
+
       if (!accumulator[year]) {
         accumulator[year] = { albumCount: 0, total_tracks: 0 };
       }
+
       accumulator[year].albumCount += 1;
       accumulator[year].total_tracks += album.total_tracks;
 
