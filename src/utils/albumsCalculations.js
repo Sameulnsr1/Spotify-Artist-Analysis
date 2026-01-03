@@ -52,29 +52,47 @@ export function tracksPerAlb(albumsObject) {
   }
 }
 
+export function artistName(albumsObject) {
+  if (!Array.isArray(albumsObject)) {
+    console.error("There is no albumsObject");
+    return [];
+  } else {
+    return albumsObject.map((item, index) => {
+      const firstArtist =
+        item.artists && item.artists[0]
+          ? item.artists[0].name
+          : "Unknown Artist";
+      const secondArtist =
+        item.artists && item.artists[1] ? item.artists[1].name : firstArtist;
+      return {
+        id: index,
+        artist_name1: firstArtist,
+        artist_name2: secondArtist,
+      };
+    });
+  }
+}
+
 export function albumsPerYear(albumsObject) {
   if (!Array.isArray(albumsObject)) {
     console.error("There is no ablums object");
     return [];
-  } else {
-    const groupByYear = albumsObject.reduce((accumulator, album) => {
-      const year = album.release_date.slice(0, 4);
-
-      if (!accumulator[year]) {
-        accumulator[year] = { albumCount: 0, total_tracks: 0 };
-      }
-
-      accumulator[year].albumCount += 1;
-      accumulator[year].total_tracks += album.total_tracks;
-
-      return accumulator;
-    }, {});
-    return Object.entries(groupByYear).map((item) => {
-      return {
-        year: item[0],
-        albumCount: item[1].albumCount,
-        total_tracks: item[1].total_tracks,
-      };
-    });
   }
+  const groupByYear = albumsObject.reduce((accumulator, album) => {
+    const year = album.release_date.slice(0, 4);
+
+    if (!accumulator[year]) {
+      accumulator[year] = { albumCount: 0, total_tracks: 0 };
+    }
+
+    accumulator[year].albumCount += 1;
+    accumulator[year].total_tracks += album.total_tracks;
+
+    return accumulator;
+  }, {});
+  return Object.entries(groupByYear).map((item) => ({
+    year: item[0],
+    albumCount: item[1].albumCount,
+    total_tracks: item[1].total_tracks,
+  }));
 }

@@ -12,10 +12,21 @@ import { useSpotifyContext } from "./hooks/useSpotifyContext";
 import { UpdateArtist } from "./components/artist";
 
 function App() {
-  const { setArtistID } = useSpotifyContext();
+  const { artistID, setArtistID } = useSpotifyContext();
 
-  const handleClick = (event) => {
-    setArtistID(event.target.value);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const cleanID = event.target.artist.value.trim();
+    if (cleanID === "") {
+      alert("Please do not submit an empty string");
+      return;
+    }
+    if (cleanID.length !== 22) {
+      alert("Please pass a correct Spotify Artist ID");
+      return;
+    } else {
+      setArtistID(cleanID);
+    }
   };
 
   return (
@@ -32,7 +43,7 @@ function App() {
               </p>
             </div>
             <div>
-              <UpdateArtist onSubmit={handleClick} />
+              <UpdateArtist spotArt={artistID} onSubmit={handleSubmit} />
             </div>
           </div>
         </header>

@@ -7,6 +7,7 @@ import {
   trackCnt,
   tracksPerAlb,
   albumsPerYear,
+  artistName,
 } from "../utils/albumsCalculations";
 
 const useSpotifyAlbum = () => {
@@ -41,6 +42,7 @@ const useSpotifyAlbum = () => {
     () => albumsPerYear(albumsObject),
     [albumsObject]
   );
+  const albumArtist = useMemo(() => artistName(albumsObject), [albumsObject]);
 
   return {
     tracksPerAlbum,
@@ -51,6 +53,8 @@ const useSpotifyAlbum = () => {
     yearlyAlbums,
     artistID,
     setArtistID,
+    albumsObject,
+    albumArtist,
   };
 };
 

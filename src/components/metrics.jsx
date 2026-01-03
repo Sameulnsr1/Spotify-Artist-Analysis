@@ -53,18 +53,25 @@ export const LongAlbum = () => {
 
 export const ShortAlbum = () => {
   const { tracksPerAlbum } = useSpotifyContext();
-  const shortTrack = tracksPerAlbum.reduce((min, current) => {
-    return current.total_tracks >= min ? min : current.total_tracks;
-  }, 1);
 
-  const shortAlbum = tracksPerAlbum.find(
-    (item) => item.total_tracks === shortTrack
-  );
-  console.log(shortAlbum);
+  if (!tracksPerAlbum || tracksPerAlbum.length === 0) {
+    return (
+      <article>
+        <p>Shortest Album: Loading...</p>
+        <p>Total Tracks: -</p>
+      </article>
+    );
+  }
+  const shortestAlbum = tracksPerAlbum.reduce((minAlbum, currentAlbum) => {
+    return currentAlbum.total_tracks > minAlbum.total_tracks
+      ? minAlbum
+      : currentAlbum;
+  }, tracksPerAlbum[0]);
+
   return (
     <article>
-      <p>Shortest Album: {shortAlbum?.name}</p>
-      <p>Total Tracks: {shortAlbum?.total_tracks}</p>
+      <p>Shortest Album: {shortestAlbum.name}</p>
+      <p>Total Tracks: {shortestAlbum.total_tracks}</p>
     </article>
   );
 };

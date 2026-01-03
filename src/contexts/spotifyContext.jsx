@@ -7,7 +7,7 @@ export function SpotifyProvider({ children }) {
   // 🤔 THINK: What should you pass to the Provider's value prop?
   const spotifyData = useSpotifyAlbum();
   console.log("this is your data", spotifyData);
-  console.log("Test", spotifyData.yearlyAlbums);
+  console.log("All Data", spotifyData.albumArtist);
 
   return (
     <SpotifyContext.Provider value={spotifyData}>
